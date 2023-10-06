@@ -63,7 +63,7 @@ const Project = ({ selectedProject }: any) => {
             {/* Main Window */}
             <div className="flex flex-col h-full">
               <div className="space-y-6 h-full justify-between flex flex-col p-4 lg:p-8">
-                <div className="flex flex-col gap-6 ">
+                <div className="flex flex-col gap-4 sm:gap-6">
                   <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
                     <div className="flex gap-4 items-center">
                       <div className="max-w-60 w-20 h-20">
@@ -84,10 +84,12 @@ const Project = ({ selectedProject }: any) => {
                       ))}
                     </div>
                   </div>
-                  <p className="text-xl whitespace-normal">{selectedProject.description}</p>
+                  <p className="text:base sm:text-xl whitespace-normal">
+                    {selectedProject.description}
+                  </p>
                 </div>
 
-                <div className="space-y-2 flex-1">
+                <div className="space-y-2 flex-1 sm:block">
                   <h2 className="text-xl">Features</h2>
                   <ul className="flex flex-col space-y-3">
                     {selectedProject?.featureList.map((feature: any) => (

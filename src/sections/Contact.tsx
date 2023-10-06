@@ -61,7 +61,7 @@ const Contact: React.FC = () => {
 
   return (
     <FadeInContainer duration={1000}>
-      <div className="h-screen flex flex-col gap-10 w-full relative overflow-hidden p-10 lg:p-16 lg:px-44">
+      <div className="h-screen flex flex-col gap-10 w-full relative overflow-hidden py-16 px-8 lg:p-16 lg:px-44">
         <div className="flex  flex-col relative w-full my-10">
           <div className="absolute border-b-2 border-dashed border-slate-900 w-screen fade-border-horizontal" />
           <div className="w-20 h-20 p-4 rounded-full bg-black border-dashed border-2 right-1/2 translate-x-10 absolute border-slate-900 -top-10 lg:-top-10 overflow-hidden">

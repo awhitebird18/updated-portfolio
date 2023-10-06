@@ -82,9 +82,9 @@ const About = () => {
               <div className="absolute -top-16 -right-8 h-screen border-slate-900 border-r-2 border-dashed fade-border hidden lg:black" />
             </div>
           </div>
-          <div className="flex items-center sm:justify-around sm:items-start col-start-2 h-full p-4 flex-col sm:flex-row gap-16 w-full">
+          <div className="flex items-center sm:justify-around sm:items-start col-start-2 h-full p-4 py-8 flex-col sm:flex-row gap-16 w-full">
             <div className="flex flex-col gap-4 justify-center items-center">
-              <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-green-500">
+              <h3 className="text-2xl sm:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-green-500">
                 Frontend Stack
               </h3>
               <div className="gap-3 flex flex-col">
@@ -96,7 +96,7 @@ const About = () => {
               </div>
             </div>
             <div className="flex flex-col gap-4">
-              <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-violet-500">
+              <h3 className="text-2xl sm:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-violet-500">
                 Backend Stack
               </h3>
               <div className="gap-3 flex flex-col">
@@ -108,7 +108,7 @@ const About = () => {
               </div>
             </div>
             <div className="flex flex-col gap-4">
-              <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 to-red-500">
+              <h3 className="text-2xl sm:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 to-red-500">
                 Tooling
               </h3>
               <div className="gap-3 flex flex-col">
