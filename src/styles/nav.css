@@ -1,0 +1,28 @@
+@keyframes fade-down {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.fade-down {
+  opacity: 0;
+  animation: fade-down 1s ease-in-out forwards;
+}
+
+.circle-node {
+  width: 3px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.parent-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 26px 0;
+}
