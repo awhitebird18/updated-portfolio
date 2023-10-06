@@ -7,9 +7,9 @@ type TechIconProps = {
 
 const TechIcon = ({ iconData }: { iconData: TechIconProps }) => {
   return (
-    <div className={`flex gap-4 items-center h-13 md:justify-normal justify-center`}>
-      <div className="w-8 h-8 hidden md:block">{iconData.icon}</div>
-      <p className="h-8">{iconData.name}</p>
+    <div className={`flex gap-4 items-center h-13 sm:justify-normal justify-center`}>
+      <div className="w-8 h-8 hidden sm:block">{iconData.icon}</div>
+      <p className="h-8 text-xl sm:text-base">{iconData.name}</p>
     </div>
   );
 };

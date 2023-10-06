@@ -42,12 +42,12 @@ const Hero = () => {
         ref={heroRef}
         style={{ backgroundColor: bgColor }}
       >
-        <div className="flex gap-10 relative z-30 flex-col xl:flex-row items-center xl:items-start">
-          <div className="w-60 h-60">
+        <div className="flex gap-2 xl:gap-10 relative z-30 flex-col xl:flex-row items-center xl:items-start">
+          <div className="w-36 h-36 xl:w-60 xl:h-60">
             <img src={birdLogo} className="w-full h-full" />
           </div>
 
-          <div className="flex flex-col gap-3 items-center xl:items-start">
+          <div className="flex flex-col gap-3 items-center xl:items-start text-center xl:text-left">
             <h1 className="text-6xl lg:text-8xl font-semibold gradient-text">Aaron Whitebird</h1>
             <p className="text-3xl hero-details">Fullstack Developer</p>
           </div>
