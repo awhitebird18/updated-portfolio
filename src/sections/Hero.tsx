@@ -43,7 +43,7 @@ const Hero = () => {
         style={{ backgroundColor: bgColor }}
       >
         <div className="flex gap-2 xl:gap-10 relative z-30 flex-col xl:flex-row items-center xl:items-start">
-          <div className="w-36 h-36 xl:w-60 xl:h-60">
+          <div className="w-32 h-32 xl:w-52 xl:h-52">
             <img src={birdLogo} className="w-full h-full" />
           </div>
 
@@ -60,7 +60,7 @@ const Hero = () => {
             style={{ opacity: visibilityRatio }}
           />
         </div>
-        <div className="forest-overlay w-full absolute bottom-0 left-0 overflow-hidden z-20 h-20"></div>
+        <div className="forest-overlay w-full absolute bottom-0 left-0 overflow-hidden z-20 h-36"></div>
         <div
           className="animated-glow absolute -bottom-24 left-0 w-full h-20 z-0"
           style={{ opacity: visibilityRatio }}

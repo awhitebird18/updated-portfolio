@@ -12,7 +12,7 @@ export const projectData = [
     id: ProjectEnum.SPARX,
     title: "Sparx Chat",
     description:
-      "Sparx is a messaging application focused on team collaboration. Drawing inspiration from platforms like Slack, it features chat channels and direct messaging to facilitate easy communication among team members. Users can have real-time conversations, categorize discussions by topics or teams, and communicate effectively. Sparx is designed to support both project-based collaborations and day-to-day team interactions.",
+      "Sparx is a messaging application focused on team collaboration. Drawing inspiration from platforms like Slack, it features chat channels and direct messaging to facilitate easy communication among team members. Users can have real-time conversations, categorize discussions by topics or teams, and communicate effectively.",
     url: "https://www.spa-rx.ca",
     repoUrl: "https://bitbucket.org/awhitebird-personal/workspace/projects/SPARX",
     videoUrl: "https://www.youtube.com/embed/wVI9iRCCJNU",

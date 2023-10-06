@@ -3,7 +3,7 @@ import { data } from "@/data/experience";
 
 const Resume = () => {
   return (
-    <div className="h-screen w-full flex flex-col gap-16 p-8 md:p-16 lg:px-24 items-center overflow-hidden">
+    <div className="w-full flex flex-col gap-16 p-8 md:p-16 lg:px-24 items-center">
       <h1 className="text-5xl">Experience</h1>
 
       <div className="flex flex-col justify-center items-center gap-12">
