@@ -3,18 +3,11 @@ import birdImg from "@/assets/bird.svg";
 import { Button } from "@/components/ui/Button";
 import "@/styles/nav.css";
 
-type NavProps = {
-  activeSection?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  refs: any;
-};
-
-const Nav = ({ refs }: NavProps) => {
+const Nav = () => {
   const [showLogo, setShowLogo] = useState(false);
 
-  const handleNavigate = (id: string) => {
-    const sectionElement = refs[id].current;
-
+  const handleNavigate = () => {
+    const sectionElement = document.getElementById("home");
     if (sectionElement) {
       const topPosition = sectionElement.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({
@@ -43,7 +36,7 @@ const Nav = ({ refs }: NavProps) => {
   return (
     <div className="flex justify-between fixed top-2 left-0 p-2 z-30 nav-details">
       {showLogo ? (
-        <Button variant="ghost" onClick={() => handleNavigate("home")} className="logo">
+        <Button variant="ghost" onClick={handleNavigate} className="logo">
           <div className="h-10 w-10">
             <img src={birdImg} className="h-full w-full" alt="Bird Logo" />
           </div>

@@ -11,7 +11,6 @@ import { Toaster } from "./components/ui/Toaster";
 import Project from "./sections/Project";
 import { projectData } from "./data/projects";
 import { ProjectEnum } from "./enums/projects.enum";
-// import Scrollbar from "smooth-scrollbar";
 
 function App() {
   const [activeSection, setActiveSection] = useState<string>("home");
@@ -24,14 +23,6 @@ function App() {
   const portfolioRef = useRef<HTMLDivElement>(null);
   const resumeRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
-
-  // useEffect(() => {
-  //   const element = document.querySelector("html");
-
-  //   if (element) {
-  //     Scrollbar.init(element as HTMLElement);
-  //   }
-  // });
 
   useEffect(() => {
     const reveal = () => {
@@ -60,13 +51,12 @@ function App() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            console.log(entry.target.id);
             setActiveSection(entry.target.id);
           }
         });
       },
       {
-        threshold: 0.9, // Adjust if needed
+        threshold: 0.8, // Adjust if needed
       }
     );
 
@@ -90,19 +80,7 @@ function App() {
       className="relative flex flex-col items-center bg-background dark overflow-hidden"
     >
       <div className="lg:block hidden">
-        <Nav
-          activeSection={activeSection}
-          refs={{
-            home: homeRef,
-            about: aboutRef,
-            skills: skillsRef,
-            sparx: sparxRef,
-            shiftpoint: shiftpointRef,
-            portfolio: portfolioRef,
-            resume: resumeRef,
-            contact: contactRef,
-          }}
-        />
+        <Nav />
         <Navigation
           activeSection={activeSection}
           refs={{
