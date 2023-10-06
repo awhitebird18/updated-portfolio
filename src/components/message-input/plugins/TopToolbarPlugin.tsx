@@ -170,9 +170,9 @@ function FloatingLinkEditor({ editor }) {
       ) : (
         <>
           <div className="link-input">
-            <a href={linkUrl} target="_blank" rel="noopener noreferrer">
+            {/* <a href={linkUrl} target="_blank" rel="noopener noreferrer">
               {linkUrl}
-            </a>
+            </a> */}
             <div
               className="link-edit"
               role="button"

@@ -102,12 +102,12 @@ const Project = ({ selectedProject }: any) => {
 
                 <div className="flex items-center gap-6 ml-auto">
                   <Button variant="outline" className={`to-${selectedProject.color}-600`} size="lg">
-                    <a href={selectedProject?.repoUrl} target="_blank">
+                    <a href={selectedProject?.repoUrl} rel="noreferrer" target="_blank">
                       View Code
                     </a>
                   </Button>
                   <Button variant="default" className={`to-${selectedProject.color}-600`} size="lg">
-                    <a href={selectedProject?.url} target="_blank">
+                    <a href={selectedProject?.url} target="_blank" rel="noreferrer">
                       View Live App
                     </a>
                   </Button>
