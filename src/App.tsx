@@ -14,8 +14,9 @@ import { ProjectEnum } from "./enums/projects.enum";
 // import Scrollbar from "smooth-scrollbar";
 
 function App() {
-  const [activeSection, setActiveSection] = useState<string>("about");
+  const [activeSection, setActiveSection] = useState<string>("home");
 
+  const homeRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
   const shiftpointRef = useRef<HTMLDivElement>(null);
@@ -23,7 +24,6 @@ function App() {
   const portfolioRef = useRef<HTMLDivElement>(null);
   const resumeRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
-  const homeRef = useRef<HTMLDivElement>(null);
 
   // useEffect(() => {
   //   const element = document.querySelector("html");
@@ -60,6 +60,7 @@ function App() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            console.log(entry.target.id);
             setActiveSection(entry.target.id);
           }
         });
@@ -69,6 +70,7 @@ function App() {
       }
     );
 
+    if (homeRef.current) observer.observe(homeRef.current);
     if (aboutRef.current) observer.observe(aboutRef.current);
     if (shiftpointRef.current) observer.observe(shiftpointRef.current);
     if (sparxRef.current) observer.observe(sparxRef.current);
@@ -76,7 +78,6 @@ function App() {
     if (skillsRef.current) observer.observe(skillsRef.current);
     if (resumeRef.current) observer.observe(resumeRef.current);
     if (contactRef.current) observer.observe(contactRef.current);
-    if (homeRef.current) observer.observe(homeRef.current);
 
     return () => {
       observer.disconnect();

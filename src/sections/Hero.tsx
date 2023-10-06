@@ -48,7 +48,7 @@ const Hero = () => {
           </div>
 
           <div className="flex flex-col gap-3 items-center xl:items-start text-center xl:text-left">
-            <h1 className="text-6xl lg:text-8xl font-semibold gradient-text">Aaron Whitebird</h1>
+            <h1 className="text-6xl xl:text-8xl font-semibold gradient-text">Aaron Whitebird</h1>
             <p className="text-3xl hero-details">Fullstack Developer</p>
           </div>
         </div>
