@@ -69,7 +69,7 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
             </h1>
             <p className="text-5xl font-bold text-white">Send me a message below.</p>
           </div>
-          <div className="flex flex-col lg:flex-row items-center md:gap-10">
+          <div className="flex flex-col lg:flex-row items-center md:  gap-10">
             <div className="lg:w-2/5 flex lg:block w-full items-center">
               <img src={fullAvatar} className="mb-8 w-28 lg:w-full" />
               <div className="flex gap-4">
