@@ -21,18 +21,22 @@ const Experience = ({ sectionRef }: { sectionRef: any }) => {
 
         <div className="flex flex-col justify-center items-center gap-10">
           {data.map((work, index) => (
-            <div key={work.title} className="flex rounded-lg border-slate-800 w-full">
+            <div key={work.title} className="flex  rounded-lg border-slate-800 w-full">
               <FadeInContainer duration={1000}>
-                <div className="flex gap-8 justify-center">
-                  <div className="w-16 flex justify-start items-start">
-                    <img src={work.companyLogo} className="w-full" />
-                  </div>
-                  <div className="flex flex-col flex-1">
-                    <div className="flex gap-2 items-center">
-                      <h3 className="font-bold text-black text-lg">{work.title}</h3>/
-                      <p className="text-violet-500 font-semibold">{work.company}</p>
+                <div className="flex flex-col gap-4 justify-center">
+                  <div className="flex gap-4">
+                    <div className="w-16 flex justify-start items-start">
+                      <img src={work.companyLogo} className="w-full" />
                     </div>
-                    <p className="text-sm mb-2 text-slate-500 font-semibold">{work.dates}</p>
+                    <div className="flex flex-col gap-2">
+                      <div className="flex gap-2 items-center">
+                        <h3 className="font-bold text-black text-lg">{work.title}</h3>/
+                        <p className="text-violet-500 font-semibold">{work.company}</p>
+                      </div>
+                      <p className="text-sm mb-2 text-slate-500 font-semibold">{work.dates}</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col flex-1 ml-2 md:ml-20">
                     <ul className="text-slate-600 flex flex-col gap-4">
                       {work.points.map((point, index) => (
                         <li key={index} className="flex items-start text-slate-800">
