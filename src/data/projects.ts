@@ -1,11 +1,9 @@
 import { ProjectEnum } from "@/enums/projects.enum";
-import sparxLogo from "@/assets/sparxLogo.svg";
-import shiftpointLogo from "@/assets/shiftpointLogo.svg";
-import portfolioLogo from "@/assets/portfolio.svg";
 import { Tech } from "@/enums/tech.enum";
+import shiftpointFull from "@/assets/shiftpointfull.jpg";
+import sparxfull from "@/assets/sparxfull.jpg";
 import shiftpointBackgroundIcon from "@/assets/shiftpointBackgroundIcon.svg";
-import sparxBackgroundIcon from "@/assets/sparxBackgroundIcon.svg";
-import portfolioBackgroundIcon from "@/assets/portfolioBackgroundIcon.svg";
+import chatbubble from "@/assets/chatbubble.svg";
 
 export const projectData = [
   {
@@ -16,15 +14,13 @@ export const projectData = [
     url: "https://www.spa-rx.ca",
     repoUrl: "https://bitbucket.org/awhitebird-personal/workspace/projects/SPARX",
     videoUrl: "https://www.youtube.com/embed/wVI9iRCCJNU",
-    image: sparxLogo,
-    backgroundIcon: sparxBackgroundIcon,
-    color: "violet",
+    backgroundIcon: chatbubble,
+    full: sparxfull,
+    color: "blue",
     featureList: [
       "User authentication and authorization with JSON web tokens.",
       "Utilizing Shadcn component with custom styling for accessilibity.",
       "Includes shortcut keys that align with accessibility best practices and convenience.",
-      // "Api effectively utilizes web sockets to ensure all of a users open apps are up-to-date.",
-      // "Sidebar is fully customizable to allow a user to sort their subscribed channels.",
     ],
     techList: [
       Tech.REACT,
@@ -44,34 +40,14 @@ export const projectData = [
     url: "https://shift-point.web.app",
     repoUrl: "https://github.com/awhitebird18/shift-point",
     videoUrl: "https://www.youtube.com/embed/wVI9iRCCJNU",
-    image: shiftpointLogo,
     backgroundIcon: shiftpointBackgroundIcon,
-    color: "blue",
+    full: shiftpointFull,
+    color: "violet",
     featureList: [
       "User authentication and authorization.",
       "Admins can create schedules for employees",
       "Complete user management",
-      // "Export data for payroll",
     ],
     techList: [Tech.REACT, Tech.JAVASCRIPT, Tech.REDUX, Tech.MONGODB, Tech.EXPRESSJS],
-  },
-  {
-    id: ProjectEnum.PORTFOLIO,
-    title: "Portfolio v1",
-    description:
-      "First version of my portfolio and is now out-of-date. Leaving here to demonstrate the difference in styling choices.",
-    url: "https://www.awhitebird.ca",
-    repoUrl: "https://github.com/awhitebird18/shift-point",
-    videoUrl: "https://www.youtube.com/embed/wVI9iRCCJNU",
-    image: portfolioLogo,
-    backgroundIcon: portfolioBackgroundIcon,
-    color: "yellow",
-    featureList: [
-      "Full user authentication",
-      "Password change and reset",
-      "Create multiple rooms and threads",
-      // "User and channel search",
-    ],
-    techList: [Tech.REACT, Tech.NEXTJS, Tech.JAVASCRIPT],
   },
 ];

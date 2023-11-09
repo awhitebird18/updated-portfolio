@@ -16,6 +16,29 @@ const FadeInContainer = forwardRef<HTMLDivElement, FadeInContainerProps>(
         setHasBeenVisible(true);
       }
     }, [isVisible]);
+
+    useEffect(() => {
+      const reveal = () => {
+        const fadeContainers = document.querySelectorAll(".fade-in");
+
+        const windowHeight = window.innerHeight;
+        const fadeInPoint = 150;
+        for (let i = 0; i < fadeContainers.length; i++) {
+          const containerTop = fadeContainers[i].getBoundingClientRect().top;
+
+          if (containerTop < windowHeight - fadeInPoint) {
+            fadeContainers[i].classList.add("active");
+          } else {
+            fadeContainers[i].classList.remove("active");
+          }
+        }
+      };
+
+      window.addEventListener("scroll", reveal);
+
+      return () => window.removeEventListener("scroll", reveal);
+    }, []);
+
     return (
       <div
         className={`transition z-20 opacity-0 h-full w-full ease-in duration-${duration} ${

@@ -1,18 +1,3 @@
-.video-responsive {
-  overflow: hidden;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  position: relative;
-  height: 0;
-}
-
-.video-responsive iframe {
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -75,12 +60,6 @@ html {
   background: linear-gradient(to left, rgb(0, 0, 0), rgba(255, 255, 255, 0));
 }
 
-#projects {
-  position: sticky;
-  top: 0; /* this means it will become sticky once its top touches the top of the viewport */
-  overflow-y: auto; /* in case its content is bigger than its height */
-}
-
 @media screen and (max-width: 640px) {
   html {
     font-size: 14px !important;
@@ -90,13 +69,4 @@ html {
   html {
     font-size: 13px !important;
   }
-}
-/* @media screen and (max-width: 768px) {
-  html {
-    font-size: 16px !important;
-  }
-} */
-
-.about-grid {
-  grid-template-columns: 1fr 5fr 100px;
 }

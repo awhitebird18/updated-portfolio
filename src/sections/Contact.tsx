@@ -1,18 +1,14 @@
-import React, { useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-// import { zodResolver } from "@hookform/resolvers/zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { v4 as uuid } from "uuid";
-import axios from "axios";
-import dayjs from "dayjs";
+import fullAvatar from "../assets/fullAvatar.png";
+import blur from "../assets/backgroundBlur.svg";
+
 import { SiBitbucket, SiGithub, SiLinkedin } from "react-icons/si";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
-import Editor from "@/components/message-input/MessageEditor";
 import { useToast } from "@/components/ui/use-toast";
-import bird from "@/assets/bird.svg";
-import { editorConfig } from "@/components/message-input/editorConfig";
-import FadeInContainer from "@/components/layout/FadeInContainer";
 
 // Zod schema for validation
 const contactSchema = z.object({
@@ -24,123 +20,175 @@ const contactSchema = z.object({
 
 type FormData = z.infer<typeof contactSchema>;
 
-const Contact: React.FC = () => {
-  const [message, setMessage] = useState("");
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Contact = ({ sectionRef }: { sectionRef: any }) => {
   const { toast } = useToast();
-  const { register, handleSubmit, formState } = useForm<FormData>({
-    // resolver: zodResolver(contactSchema),
+  const { register, formState, resetField, reset } = useForm<FormData>({
+    resolver: zodResolver(contactSchema),
   });
 
-  const submitHandler = async () => {
-    const messageData = {
-      content: message,
-      channelId: "b23bef4b-a74a-469f-860b-cf7b4fdeaea6",
-      userId: "5633c9b9-b914-4732-80db-3ceb25182aae",
-      uuid: uuid(),
-      createdAt: dayjs(),
-    };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, react-hooks/exhaustive-deps
+  const submitHandler = (event: any) => {
+    event.preventDefault();
 
-    try {
-      await axios.post("https://api.spa-rx.ca:3000/messages", messageData);
+    const myForm = event.target;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const formData = new FormData(myForm) as any;
 
-      toast({
-        title: "Message Sent!",
-        description: "",
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
+    })
+      .then(() => {
+        toast({ title: "Success" });
+        resetField("email");
+      })
+      .catch(() => {
+        toast({ title: "Error" });
       });
-    } catch (error) {
-      toast({
-        title: "Something went wrong",
-        description: "Please send an email to aaron.whitebird@gmail.com",
-      });
-    }
+
+    reset();
   };
 
-  const handleChange = (message: string) => {
-    setMessage(message);
-  };
+  useEffect(() => {
+    document.querySelector("form")?.addEventListener("submit", submitHandler);
+  }, [submitHandler]);
 
   return (
-    <FadeInContainer duration={1000}>
-      <div className="h-screen flex flex-col gap-10 w-full relative overflow-hidden py-16 pb-24 px-8 lg:p-16 lg:px-44">
-        <div className="flex  flex-col relative w-full my-10">
-          <div className="absolute border-b-2 border-dashed border-slate-900 w-screen fade-border-horizontal" />
-          <div className="w-20 h-20 p-4 rounded-full bg-black border-dashed border-2 right-1/2 translate-x-10 absolute border-slate-900 -top-10 lg:-top-10 overflow-hidden">
-            <img src={bird} className="h-full w-full" />
+    <div
+      id="contact"
+      ref={sectionRef}
+      className="flex flex-col w-full items-center relative overflow-hidden bg-black"
+    >
+      <div className="flex flex-col gap-6 w-full items-center px-8 md:px-16 py-24 max-w-6xl">
+        <div className="flex flex-col gap-10 items-center justify-between w-full z-10">
+          <div className="justify-start flex flex-col items-start w-full">
+            <h1 className="text-3xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-purple-500 leading-normal">
+              Contact
+            </h1>
+            <p className="text-5xl font-bold text-white">Send me a message below.</p>
           </div>
-        </div>
+          <div className="flex flex-col lg:flex-row items-center md:gap-10">
+            <div className="lg:w-2/5 flex lg:block w-full items-center">
+              <img src={fullAvatar} className="mb-8 w-28 lg:w-full" />
+              <div className="flex gap-4">
+                <a href="https://github.com/awhitebird18" target="_blank" className="lg:w-44">
+                  <Button
+                    variant="outline"
+                    className="flex gap-2 items-center p-6 lg:p-3"
+                    size="sm"
+                  >
+                    <SiGithub size={28} /> <span className="hidden lg:inline">Github</span>
+                  </Button>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/aaron-whitebird"
+                  target="_blank"
+                  className="lg:w-44"
+                >
+                  <Button
+                    variant="outline"
+                    className="flex gap-2 items-center p-6 lg:p-3"
+                    size="sm"
+                  >
+                    <SiLinkedin size={28} />
+                    <span className="hidden lg:inline ">linkedIn</span>
+                  </Button>
+                </a>
+                <a
+                  href="https://bitbucket.org/awhitebird-personal/workspace/repositories/"
+                  target="_blank"
+                  className="lg:w-44"
+                >
+                  <Button
+                    variant="outline"
+                    className="flex gap-2 items-center p-6 lg:p-3"
+                    size="sm"
+                  >
+                    <SiBitbucket size={28} />
+                    <span className="hidden lg:inline">BitBucket</span>
+                  </Button>
+                </a>
+              </div>
+            </div>
 
-        <div className="flex flex-col gap-8 flex-1 items-center justify-around">
-          <h1 className="text-4xl text-center leading-normal">
-            Intested to learn more? Send me a message below
-          </h1>
+            <div className="relative w-full lg:w-3/5 ">
+              <img src={blur} className="-top-20 -right-32 absolute z-0 lg:w-96 h-96 opacity-50" />
 
-          <div
-            className="flex flex-col gap-6 w-full lg:w-3/4 h-3/4"
-            onSubmit={handleSubmit(submitHandler)}
-          >
-            <Input className="border p-2 rounded" name="name" placeholder="Name" {...register} />
-            {formState.errors.name && (
-              <span className="text-red-600">{formState.errors.name.message}</span>
-            )}
+              <form
+                className="flex flex-col gap-6 h-full justify-between bg-zinc-900/70 p-8 rounded-lg shadow-lg max-w-2xl z-10 relative"
+                onSubmit={submitHandler}
+                data-netlify="true"
+                name="email"
+              >
+                <div className="flex flex-col gap-2">
+                  <h3 className="text-3xl text-white font-bold">Aaron Whitebird</h3>
+                  <h4 className="text-xl text-slate-400">Full Stack Developer</h4>
+                  <p className="text-white">
+                    Send me an email with the fields below and I will get be sure to be back to you
+                    shortly!
+                  </p>
+                </div>
+                <Input
+                  className="border p-2 rounded bg-transparent text-white placeholder:text-slate-400"
+                  name="name"
+                  placeholder="Name"
+                  {...register}
+                />
+                {formState.errors.name && (
+                  <span className="text-red-600">{formState.errors.name.message}</span>
+                )}
 
-            <Input
-              className="border p-2 rounded"
-              name="email"
-              type="email"
-              placeholder="Email"
-              {...register}
-            />
-            {formState.errors.email && (
-              <span className="text-red-600">{formState.errors.email?.message}</span>
-            )}
+                <Input
+                  className="border p-2 rounded bg-transparent text-white placeholder:text-slate-400 "
+                  name="email"
+                  type="email"
+                  placeholder="Email"
+                  {...register}
+                />
+                {formState.errors.email && (
+                  <span className="text-red-600">{formState.errors.email?.message}</span>
+                )}
 
-            <Input
-              className="border p-2 rounded"
-              name="subject"
-              placeholder="Subject"
-              {...register}
-            />
-            {formState.errors.subject && (
-              <span className="text-red-600">{formState.errors.subject.message}</span>
-            )}
+                <Input
+                  className="border p-2 rounded bg-transparent text-white placeholder:text-slate-400"
+                  name="subject"
+                  placeholder="Subject"
+                  {...register}
+                />
+                {formState.errors.subject && (
+                  <span className="text-red-600">{formState.errors.subject.message}</span>
+                )}
 
-            <Editor
-              config={editorConfig}
-              onChange={handleChange}
-              placeholder="Send me a message!"
-              onSubmit={() => {}}
-            />
-            {formState.errors.message && (
-              <span className="text-red-600">{formState.errors.message.message}</span>
-            )}
+                <Input
+                  className="border p-2 rounded bg-transparent text-white placeholder:text-slate-400"
+                  name="message"
+                  placeholder="Message"
+                  {...register}
+                />
 
-            <div className="flex flex-col gap-2">
-              <Button onClick={submitHandler} className="bg-blue-500 text-white rounded px-4 py-2">
-                Send
-              </Button>
+                {formState.errors.message && (
+                  <span className="text-red-600">{formState.errors.message.message}</span>
+                )}
 
-              <p className="text-right">Powered by Sparx Chat</p>
+                <div className="flex flex-col gap-2">
+                  <Button type="submit" className="text-white rounded">
+                    Send
+                  </Button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-
-        <div className="flex items-center flex-col justify-center gap-2">
-          <h4 className="text-xl text-slate-400 flex-1">Fly, high, & level up.</h4>
-          <div className="flex gap-6 w-min">
-            <Button variant="ghost" className="flex gap-4 items-center p-4 py-8 justify-start">
-              <SiGithub size={28} />
-            </Button>
-            <Button variant="ghost" className="flex gap-4 items-center p-4 py-8 justify-start">
-              <SiLinkedin size={28} />
-            </Button>
-            <Button variant="ghost" className="flex gap-4 items-center p-4 py-8 justify-start">
-              <SiBitbucket size={28} />
-            </Button>
-          </div>
-        </div>
       </div>
-    </FadeInContainer>
+      <p className="w-full flex justify-center p-6 text-slate-500 border-t border-slate-900 max-w-2xl">
+        Copyright © 2023 | Whitebird Web Designs | All Rights Reserved
+      </p>
+    </div>
   );
 };
 
 export default Contact;
+
+// className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-violet-400"

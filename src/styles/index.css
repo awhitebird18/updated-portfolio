@@ -79,12 +79,12 @@
   h4,
   h5,
   h6 {
-    @apply text-slate-200;
+    @apply text-black;
   }
   p {
-    @apply text-slate-400;
+    @apply text-slate-700;
   }
   body {
-    @apply bg-background text-slate-400;
+    @apply bg-white;
   }
 }
