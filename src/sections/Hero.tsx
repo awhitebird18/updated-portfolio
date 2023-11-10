@@ -33,12 +33,12 @@ const Hero = ({ sectionRef }: { sectionRef: any }) => {
             </a>
           </div>
         </div>
-        <div className="hero-details w-5/6 md:w-3/5 min-h-[23rem] max-h-[28rem] absolute -bottom-24 left-auto rounded-2xl overflow-hidden shadow-lg shadow-violet-500 max-w-5xl">
+        <div className="hero-details w-11/12 md:w-3/5 min-h-[23rem] max-h-[28rem] absolute -bottom-12 md:-bottom-24 left-auto rounded-2xl overflow-hidden shadow-lg shadow-violet-500 max-w-5xl">
           <img src={sparxLogin} />
         </div>
         <div className="w-full h-min absolute bottom-0 left-0">
           <img src={upcurve} alt="" className="w-full " />
-          <div className="h-10 bg-black"></div>
+          <div className="h-24 md:h-12 bg-black"></div>
         </div>
       </div>
     </FadeInContainer>

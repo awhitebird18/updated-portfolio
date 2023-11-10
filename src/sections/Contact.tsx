@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -23,7 +23,7 @@ type FormData = z.infer<typeof contactSchema>;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Contact = ({ sectionRef }: { sectionRef: any }) => {
   const { toast } = useToast();
-  const { register, formState, resetField, reset } = useForm<FormData>({
+  const { register, formState, reset } = useForm<FormData>({
     resolver: zodResolver(contactSchema),
   });
 
@@ -31,29 +31,30 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
   const submitHandler = (event: any) => {
     event.preventDefault();
 
-    const myForm = event.target;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const formData = new FormData(myForm) as any;
+    const form = event.currentTarget;
+    const data = new FormData(form);
 
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      body: new URLSearchParams(data).toString(),
     })
       .then(() => {
+        // Handle the success state, e.g., showing a success message
         toast({ title: "Success" });
-        resetField("email");
+        reset();
       })
-      .catch(() => {
-        toast({ title: "Error" });
+      .catch((error) => {
+        // Handle the error state
+        toast({ title: "Error", description: error.message });
       });
-
-    reset();
   };
 
-  useEffect(() => {
-    document.querySelector("form")?.addEventListener("submit", submitHandler);
-  }, [submitHandler]);
+  // useEffect(() => {
+  //   document.querySelector("form")?.addEventListener("submit", submitHandler);
+  // }, [submitHandler]);
 
   return (
     <div
@@ -117,11 +118,15 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
               <img src={blur} className="-top-20 -right-32 absolute z-0 lg:w-96 h-96 opacity-50" />
 
               <form
-                className="flex flex-col gap-6 h-full justify-between bg-zinc-900/70 p-8 rounded-lg shadow-lg max-w-2xl z-10 relative"
+                className="your-form-styles"
                 onSubmit={submitHandler}
+                name="contact" // The form name you set for Netlify to recognize
                 data-netlify="true"
-                name="email"
+                data-netlify-honeypot="bot-field"
               >
+                {/* The hidden field for Netlify */}
+                <input type="hidden" name="bot-field" />
+
                 <div className="flex flex-col gap-2">
                   <h3 className="text-3xl text-white font-bold">Aaron Whitebird</h3>
                   <h4 className="text-xl text-slate-400">Full Stack Developer</h4>
