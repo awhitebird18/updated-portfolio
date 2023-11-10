@@ -115,37 +115,42 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
 
             <div className="relative w-full lg:w-3/5 ">
               <img src={blur} className="-top-20 -right-32 absolute z-0 lg:w-96 h-96 opacity-50" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <p className="w-full flex justify-center p-6 text-slate-500 border-t border-slate-900 max-w-2xl">
+        Copyright © 2023 | Whitebird Web Designs | All Rights Reserved
+      </p>
+      <form
+        className="flex flex-col gap-6 h-full justify-between bg-zinc-900/70 p-8 rounded-lg shadow-lg max-w-2xl z-10 relative"
+        // onSubmit={submitHandler}
+        data-netlify="true"
+        name="contact"
+        method="POST"
+        id="contact-form"
+        // action="/"
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <div className="flex flex-col gap-2">
+          <h3 className="text-3xl text-white font-bold">Aaron Whitebird</h3>
+          <h4 className="text-xl text-slate-400">Full Stack Developer</h4>
+          <p className="text-white">
+            Send me an email with the fields below and I will get be sure to be back to you shortly!
+          </p>
+        </div>
 
-              <form
-                className="flex flex-col gap-6 h-full justify-between bg-zinc-900/70 p-8 rounded-lg shadow-lg max-w-2xl z-10 relative"
-                // onSubmit={submitHandler}
-                data-netlify="true"
-                name="contact"
-                method="POST"
-                id="contact-form"
-                action="/"
-              >
-                <input type="hidden" name="form-name" value="contact" />
-                <div className="flex flex-col gap-2">
-                  <h3 className="text-3xl text-white font-bold">Aaron Whitebird</h3>
-                  <h4 className="text-xl text-slate-400">Full Stack Developer</h4>
-                  <p className="text-white">
-                    Send me an email with the fields below and I will get be sure to be back to you
-                    shortly!
-                  </p>
-                </div>
-
-                <p>
-                  <label>
-                    Your Name: <input type="text" name="name" />
-                  </label>
-                </p>
-                <p>
-                  <label>
-                    Your Email: <input type="email" name="email" />
-                  </label>
-                </p>
-                {/* <Input
+        <p>
+          <label>
+            Your Name: <input type="text" name="name" />
+          </label>
+        </p>
+        <p>
+          <label>
+            Your Email: <input type="email" name="email" />
+          </label>
+        </p>
+        {/* <Input
                   className="border p-2 rounded bg-transparent text-white placeholder:text-slate-400"
                   name="name"
                   placeholder="Name"
@@ -166,7 +171,7 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
                   <span className="text-red-600">{formState.errors.email?.message}</span>
                 )} */}
 
-                {/* <Input
+        {/* <Input
                   className="border p-2 rounded bg-transparent text-white placeholder:text-slate-400"
                   name="subject"
                   placeholder="Subject"
@@ -187,23 +192,16 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
                   <span className="text-red-600">{formState.errors.message.message}</span>
                 )} */}
 
-                <p>
-                  <button type="submit">Send</button>
-                </p>
+        <p>
+          <button type="submit">Send</button>
+        </p>
 
-                {/* <div className="flex flex-col gap-2">
+        {/* <div className="flex flex-col gap-2">
                   <Button type="submit" className="text-white rounded">
                     Send
                   </Button>
                 </div> */}
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <p className="w-full flex justify-center p-6 text-slate-500 border-t border-slate-900 max-w-2xl">
-        Copyright © 2023 | Whitebird Web Designs | All Rights Reserved
-      </p>
+      </form>
     </div>
   );
 };
