@@ -121,9 +121,9 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
                 // onSubmit={submitHandler}
                 data-netlify="true"
                 name="contact"
-                method="post"
+                method="POST"
                 id="contact-form"
-                action="/success"
+                action="/"
               >
                 <input type="hidden" name="form-name" value="contact" />
                 <div className="flex flex-col gap-2">
