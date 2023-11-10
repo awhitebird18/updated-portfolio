@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -23,7 +23,7 @@ type FormData = z.infer<typeof contactSchema>;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Contact = ({ sectionRef }: { sectionRef: any }) => {
   const { toast } = useToast();
-  const { resetField, reset } = useForm<FormData>({
+  const { reset } = useForm<FormData>({
     resolver: zodResolver(contactSchema),
   });
 
@@ -41,8 +41,9 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
       body: new URLSearchParams(formData).toString(),
     })
       .then(() => {
+        console.log("form submitted");
         toast({ title: "Success" });
-        resetField("email");
+        // resetField("email");
       })
       .catch(() => {
         toast({ title: "Error" });
@@ -51,9 +52,9 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
     reset();
   };
 
-  useEffect(() => {
-    document.querySelector("form")?.addEventListener("submit", submitHandler);
-  }, [submitHandler]);
+  // useEffect(() => {
+  //   document.querySelector("form")?.addEventListener("submit", submitHandler);
+  // }, [submitHandler]);
 
   return (
     <div
@@ -124,7 +125,7 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
       </p>
       <form
         className="flex flex-col gap-6 h-full justify-between bg-zinc-900/70 p-8 rounded-lg shadow-lg max-w-2xl z-10 relative"
-        // onSubmit={submitHandler}
+        onSubmit={submitHandler}
         data-netlify="true"
         name="contact"
         // method="POST"
@@ -140,16 +141,14 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
           </p>
         </div>
 
-        <p>
-          <label>
-            Your Name: <input type="text" name="name" />
-          </label>
-        </p>
-        <p>
-          <label>
-            Your Email: <input type="email" name="email" />
-          </label>
-        </p>
+        <label>
+          Your Name: <input type="text" name="name" />
+        </label>
+
+        <label>
+          Your Email: <input type="email" name="email" />
+        </label>
+
         {/* <Input
                   className="border p-2 rounded bg-transparent text-white placeholder:text-slate-400"
                   name="name"
