@@ -127,7 +127,7 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
         // onSubmit={submitHandler}
         data-netlify="true"
         name="contact"
-        method="POST"
+        // method="POST"
         id="contact-form"
         // action="/"
       >
