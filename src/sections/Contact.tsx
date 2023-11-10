@@ -1,4 +1,4 @@
-// import { useEffect } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -7,7 +7,7 @@ import blur from "../assets/backgroundBlur.svg";
 
 import { SiBitbucket, SiGithub, SiLinkedin } from "react-icons/si";
 import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
+// import { Input } from "@/components/ui/Input";
 import { useToast } from "@/components/ui/use-toast";
 
 // Zod schema for validation
@@ -23,7 +23,7 @@ type FormData = z.infer<typeof contactSchema>;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Contact = ({ sectionRef }: { sectionRef: any }) => {
   const { toast } = useToast();
-  const { register, formState, reset } = useForm<FormData>({
+  const { resetField, reset } = useForm<FormData>({
     resolver: zodResolver(contactSchema),
   });
 
@@ -31,30 +31,29 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
   const submitHandler = (event: any) => {
     event.preventDefault();
 
-    const form = event.currentTarget;
-    const data = new FormData(form);
+    const myForm = event.target;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const formData = new FormData(myForm) as any;
 
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      body: new URLSearchParams(data).toString(),
+      body: new URLSearchParams(formData).toString(),
     })
       .then(() => {
-        // Handle the success state, e.g., showing a success message
         toast({ title: "Success" });
-        reset();
+        resetField("email");
       })
-      .catch((error) => {
-        // Handle the error state
-        toast({ title: "Error", description: error.message });
+      .catch(() => {
+        toast({ title: "Error" });
       });
+
+    reset();
   };
 
-  // useEffect(() => {
-  //   document.querySelector("form")?.addEventListener("submit", submitHandler);
-  // }, [submitHandler]);
+  useEffect(() => {
+    document.querySelector("form")?.addEventListener("submit", submitHandler);
+  }, [submitHandler]);
 
   return (
     <div
@@ -118,15 +117,11 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
               <img src={blur} className="-top-20 -right-32 absolute z-0 lg:w-96 h-96 opacity-50" />
 
               <form
-                className="your-form-styles"
+                className="flex flex-col gap-6 h-full justify-between bg-zinc-900/70 p-8 rounded-lg shadow-lg max-w-2xl z-10 relative"
                 onSubmit={submitHandler}
-                name="contact" // The form name you set for Netlify to recognize
                 data-netlify="true"
-                data-netlify-honeypot="bot-field"
+                name="email"
               >
-                {/* The hidden field for Netlify */}
-                <input type="hidden" name="bot-field" />
-
                 <div className="flex flex-col gap-2">
                   <h3 className="text-3xl text-white font-bold">Aaron Whitebird</h3>
                   <h4 className="text-xl text-slate-400">Full Stack Developer</h4>
@@ -135,7 +130,18 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
                     shortly!
                   </p>
                 </div>
-                <Input
+
+                <p>
+                  <label>
+                    Your Name: <input type="text" name="name" />
+                  </label>
+                </p>
+                <p>
+                  <label>
+                    Your Email: <input type="email" name="email" />
+                  </label>
+                </p>
+                {/* <Input
                   className="border p-2 rounded bg-transparent text-white placeholder:text-slate-400"
                   name="name"
                   placeholder="Name"
@@ -154,9 +160,9 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
                 />
                 {formState.errors.email && (
                   <span className="text-red-600">{formState.errors.email?.message}</span>
-                )}
+                )} */}
 
-                <Input
+                {/* <Input
                   className="border p-2 rounded bg-transparent text-white placeholder:text-slate-400"
                   name="subject"
                   placeholder="Subject"
@@ -175,13 +181,17 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
 
                 {formState.errors.message && (
                   <span className="text-red-600">{formState.errors.message.message}</span>
-                )}
+                )} */}
 
-                <div className="flex flex-col gap-2">
+                <p>
+                  <button type="submit">Send</button>
+                </p>
+
+                {/* <div className="flex flex-col gap-2">
                   <Button type="submit" className="text-white rounded">
                     Send
                   </Button>
-                </div>
+                </div> */}
               </form>
             </div>
           </div>
