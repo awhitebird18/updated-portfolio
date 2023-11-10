@@ -1,59 +1,59 @@
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+// import { useEffect } from "react";
+// import { useForm } from "react-hook-form";
+// import { zodResolver } from "@hookform/resolvers/zod";
+// import { z } from "zod";
 import fullAvatar from "../assets/fullAvatar.png";
 import blur from "../assets/backgroundBlur.svg";
 
 import { SiBitbucket, SiGithub, SiLinkedin } from "react-icons/si";
 import { Button } from "@/components/ui/Button";
 // import { Input } from "@/components/ui/Input";
-import { useToast } from "@/components/ui/use-toast";
+// import { useToast } from "@/components/ui/use-toast";
 
 // Zod schema for validation
-const contactSchema = z.object({
-  name: z.string().min(2, "Name too short"),
-  email: z.string().email("Invalid email address"),
-  subject: z.string(),
-  message: z.string().min(10, "Message should be at least 10 characters"),
-});
+// const contactSchema = z.object({
+//   name: z.string().min(2, "Name too short"),
+//   email: z.string().email("Invalid email address"),
+//   subject: z.string(),
+//   message: z.string().min(10, "Message should be at least 10 characters"),
+// });
 
-type FormData = z.infer<typeof contactSchema>;
+// type FormData = z.infer<typeof contactSchema>;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Contact = ({ sectionRef }: { sectionRef: any }) => {
-  const { toast } = useToast();
-  const { resetField, reset } = useForm<FormData>({
-    resolver: zodResolver(contactSchema),
-  });
+  // const { toast } = useToast();
+  // const { resetField, reset } = useForm<FormData>({
+  //   resolver: zodResolver(contactSchema),
+  // });
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, react-hooks/exhaustive-deps
-  const submitHandler = (event: any) => {
-    event.preventDefault();
+  // const submitHandler = (event: any) => {
+  //   event.preventDefault();
 
-    const myForm = event.target;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const formData = new FormData(myForm) as any;
+  //   const myForm = event.target;
+  //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  //   const formData = new FormData(myForm) as any;
 
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
-    })
-      .then(() => {
-        toast({ title: "Success" });
-        resetField("email");
-      })
-      .catch(() => {
-        toast({ title: "Error" });
-      });
+  //   fetch("/", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
+  //     body: new URLSearchParams(formData).toString(),
+  //   })
+  //     .then(() => {
+  //       toast({ title: "Success" });
+  //       resetField("email");
+  //     })
+  //     .catch(() => {
+  //       toast({ title: "Error" });
+  //     });
 
-    reset();
-  };
+  //   reset();
+  // };
 
-  useEffect(() => {
-    document.querySelector("form")?.addEventListener("submit", submitHandler);
-  }, [submitHandler]);
+  // useEffect(() => {
+  //   document.querySelector("form")?.addEventListener("submit", submitHandler);
+  // }, [submitHandler]);
 
   return (
     <div
