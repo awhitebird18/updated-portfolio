@@ -74,7 +74,7 @@ export const Navbar = ({ active }: { active: string }) => {
         </button>
       </div>
       <div
-        className={`flex w-full flex-col justify-center z-30 transition-all overflow-hidden ${
+        className={`flex w-full flex-col justify-center z-30 transition-all duration-300 overflow-hidden ${
           open
             ? "h-[26rem] rotate-0 translate-x-0"
             : "h-0 -rotate-90 translate-x-28 -translate-y-28"
