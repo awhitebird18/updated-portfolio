@@ -120,10 +120,12 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
                 className="flex flex-col gap-6 h-full justify-between bg-zinc-900/70 p-8 rounded-lg shadow-lg max-w-2xl z-10 relative"
                 // onSubmit={submitHandler}
                 data-netlify="true"
-                name="email"
+                name="contact"
                 method="post"
                 id="contact-form"
+                action="/success"
               >
+                <input type="hidden" name="form-name" value="contact" />
                 <div className="flex flex-col gap-2">
                   <h3 className="text-3xl text-white font-bold">Aaron Whitebird</h3>
                   <h4 className="text-xl text-slate-400">Full Stack Developer</h4>
