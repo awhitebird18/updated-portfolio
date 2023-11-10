@@ -38,7 +38,7 @@ const Hero = ({ sectionRef }: { sectionRef: any }) => {
         </div>
         <div className="w-full h-min absolute bottom-0 left-0">
           <img src={upcurve} alt="" className="w-full " />
-          <div className="h-24 md:h-12 bg-black"></div>
+          <div className="h-32 md:h-12 bg-black"></div>
         </div>
       </div>
     </FadeInContainer>
