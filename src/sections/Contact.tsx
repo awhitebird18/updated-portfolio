@@ -4,32 +4,32 @@ import blur from "../assets/backgroundBlur.svg";
 import { SiBitbucket, SiGithub, SiLinkedin } from "react-icons/si";
 import { Button } from "@/components/ui/Button";
 
-import { useToast } from "@/components/ui/use-toast";
+// import { useToast } from "@/components/ui/use-toast";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Contact = ({ sectionRef }: { sectionRef: any }) => {
-  const { toast } = useToast();
+  // const { toast } = useToast();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, react-hooks/exhaustive-deps
-  const submitHandler = (event: any) => {
-    event.preventDefault();
+  // const submitHandler = (event: any) => {
+  //   event.preventDefault();
 
-    const myForm = event.target;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const formData = new FormData(myForm) as any;
+  //   const myForm = event.target;
+  //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  //   const formData = new FormData(myForm) as any;
 
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
-    })
-      .then(() => {
-        console.log("form submitted");
-      })
-      .catch(() => {
-        toast({ title: "Error" });
-      });
-  };
+  //   fetch("/", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
+  //     body: new URLSearchParams(formData).toString(),
+  //   })
+  //     .then(() => {
+  //       console.log("form submitted");
+  //     })
+  //     .catch(() => {
+  //       toast({ title: "Error" });
+  //     });
+  // };
 
   return (
     <div
@@ -100,10 +100,10 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
       </p>
       <form
         className="flex flex-col gap-6 h-full justify-between bg-zinc-900/70 p-8 rounded-lg shadow-lg max-w-2xl z-10 relative"
-        onSubmit={submitHandler}
-        data-netlify="true"
         name="contact"
-        id="contact-form"
+        action="/success"
+        method="POST"
+        data-netlify="true"
       >
         <input type="hidden" name="form-name" value="contact" />
         <div className="flex flex-col gap-2">
