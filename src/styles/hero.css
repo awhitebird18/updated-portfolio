@@ -42,15 +42,6 @@
   animation-delay: 1s;
 }
 
-.curve {
-  background-image: url("../assets/curver.svg");
-  width: 100%;
-  height: 10rem;
-  background-repeat: no-repeat;
-  background-size: auto;
-  background-position: center bottom -1px;
-}
-
 .parallax-section {
   position: relative;
   background-image: url("../assets/parallax.jpg");
@@ -72,11 +63,6 @@
 .parallax-section > * {
   position: relative;
   z-index: 2;
-}
-
-.btnTexture {
-  background-image: url("../assets/background.svg");
-  background-size: cover;
 }
 
 .animated-star {
