@@ -1,14 +1,37 @@
+// import { useForm } from "react-hook-form";
+// import { zodResolver } from "@hookform/resolvers/zod";
+// import { z } from "zod";
 import fullAvatar from "../assets/fullAvatar.png";
 import blur from "../assets/backgroundBlur.svg";
 
 import { SiBitbucket, SiGithub, SiLinkedin } from "react-icons/si";
 import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
+import { useToast } from "@/components/ui/use-toast";
+import { useForm } from "@formspree/react";
+import { useEffect, useState } from "react";
 
-// import { useToast } from "@/components/ui/use-toast";
+// Zod schema for validation
+// const contactSchema = z.object({
+//   name: z.string().min(2, "Name too short"),
+//   email: z.string().email("Invalid email address"),
+//   subject: z.string(),
+//   message: z.string().min(10, "Message should be at least 10 characters"),
+// });
+
+// type FormData = z.infer<typeof contactSchema>;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Contact = ({ sectionRef }: { sectionRef: any }) => {
-  // const { toast } = useToast();
+  const [state, handleSubmit] = useForm("mbjvbvaa");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const { toast } = useToast();
+  // const { register, formState, resetField, reset } = useForm<FormData>({
+  //   resolver: zodResolver(contactSchema),
+  // });
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, react-hooks/exhaustive-deps
   // const submitHandler = (event: any) => {
@@ -24,12 +47,29 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
   //     body: new URLSearchParams(formData).toString(),
   //   })
   //     .then(() => {
-  //       console.log("form submitted");
+  //       toast({ title: "Success" });
+  //       resetField("email");
   //     })
   //     .catch(() => {
   //       toast({ title: "Error" });
   //     });
+
+  //   reset();
   // };
+
+  useEffect(() => {
+    if (state.succeeded) {
+      setName("");
+      setEmail("");
+      setSubject("");
+      setMessage("");
+      toast({
+        title: "Email Submitted",
+        description: "Thanks for the submission. I will be get back to you shortly.",
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.succeeded]);
 
   return (
     <div
@@ -91,6 +131,85 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
 
             <div className="relative w-full lg:w-3/5 ">
               <img src={blur} className="-top-20 -right-32 absolute z-0 lg:w-96 h-96 opacity-50" />
+
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-col gap-6 h-full justify-between bg-zinc-900/70 p-8 rounded-lg shadow-lg max-w-2xl z-10 relative"
+              >
+                <div className="flex flex-col gap-2">
+                  <h3 className="text-3xl text-white font-bold">Aaron Whitebird</h3>
+                  <h4 className="text-xl text-slate-400">Full Stack Developer</h4>
+                  <p className="text-white">
+                    Send me an email with the fields below and I will get be sure to be back to you
+                    shortly!
+                  </p>
+                </div>
+
+                <Input
+                  id="name"
+                  className="border p-2 rounded bg-transparent text-white placeholder:text-slate-400"
+                  name="name"
+                  placeholder="Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  // {...register}
+                />
+                {/* {formState.errors.name && (
+                  <span className="text-red-600">{formState.errors.name.message}</span>
+                )} */}
+
+                <Input
+                  id="email"
+                  className="border p-2 rounded bg-transparent text-white placeholder:text-slate-400 "
+                  name="email"
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  // {...register}
+                />
+                {/* {formState.errors.email && (
+                  <span className="text-red-600">{formState.errors.email?.message}</span>
+                )} */}
+
+                <Input
+                  id="subject"
+                  className="border p-2 rounded bg-transparent text-white placeholder:text-slate-400"
+                  name="subject"
+                  placeholder="Subject"
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
+                  // {...register}
+                />
+                {/* {formState.errors.subject && (
+                  <span className="text-red-600">{formState.errors.subject.message}</span>
+                )} */}
+
+                <Input
+                  id="message"
+                  className="border p-2 rounded bg-transparent text-white placeholder:text-slate-400"
+                  name="message"
+                  placeholder="Message"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  // {...register}
+                />
+
+                {/* {formState.errors.message && (
+                  <span className="text-red-600">{formState.errors.message.message}</span>
+                )} */}
+
+                {/* <div className="flex flex-col gap-2">
+                  <Button type="submit" className="text-white rounded">
+                    Send
+                  </Button>
+                </div> */}
+                <div className="flex flex-col gap-2">
+                  <Button type="submit" className="text-white rounded">
+                    Send
+                  </Button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -98,82 +217,6 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
       <p className="w-full flex justify-center p-6 text-slate-500 border-t border-slate-900 max-w-2xl">
         Copyright © 2023 | Whitebird Web Designs | All Rights Reserved
       </p>
-      <form
-        className="flex flex-col gap-6 h-full justify-between bg-zinc-900/70 p-8 rounded-lg shadow-lg max-w-2xl z-10 relative"
-        name="contact"
-        action="/success"
-        method="POST"
-        data-netlify="true"
-      >
-        <input type="hidden" name="form-name" value="contact" />
-        <div className="flex flex-col gap-2">
-          <h3 className="text-3xl text-white font-bold">Aaron Whitebird</h3>
-          <h4 className="text-xl text-slate-400">Full Stack Developer</h4>
-          <p className="text-white">
-            Send me an email with the fields below and I will get be sure to be back to you shortly!
-          </p>
-        </div>
-
-        <label>
-          Your Name: <input type="text" name="name" />
-        </label>
-
-        <label>
-          Your Email: <input type="email" name="email" />
-        </label>
-
-        {/* <Input
-                  className="border p-2 rounded bg-transparent text-white placeholder:text-slate-400"
-                  name="name"
-                  placeholder="Name"
-                  {...register}
-                />
-                {formState.errors.name && (
-                  <span className="text-red-600">{formState.errors.name.message}</span>
-                )}
-
-                <Input
-                  className="border p-2 rounded bg-transparent text-white placeholder:text-slate-400 "
-                  name="email"
-                  type="email"
-                  placeholder="Email"
-                  {...register}
-                />
-                {formState.errors.email && (
-                  <span className="text-red-600">{formState.errors.email?.message}</span>
-                )} */}
-
-        {/* <Input
-                  className="border p-2 rounded bg-transparent text-white placeholder:text-slate-400"
-                  name="subject"
-                  placeholder="Subject"
-                  {...register}
-                />
-                {formState.errors.subject && (
-                  <span className="text-red-600">{formState.errors.subject.message}</span>
-                )}
-
-                <Input
-                  className="border p-2 rounded bg-transparent text-white placeholder:text-slate-400"
-                  name="message"
-                  placeholder="Message"
-                  {...register}
-                />
-
-                {formState.errors.message && (
-                  <span className="text-red-600">{formState.errors.message.message}</span>
-                )} */}
-
-        <p>
-          <input type="submit" />
-        </p>
-
-        {/* <div className="flex flex-col gap-2">
-                  <Button type="submit" className="text-white rounded">
-                    Send
-                  </Button>
-                </div> */}
-      </form>
     </div>
   );
 };
