@@ -102,7 +102,7 @@ const Tech = ({ sectionRef }: { sectionRef: any }) => {
         </div>
       </div>
 
-      <img src={bottomcurve} alt="" className="w-full h-max bg-white" />
+      <img src={bottomcurve} alt="" className="w-[102vw] h-max bg-white" />
     </div>
   );
 };
