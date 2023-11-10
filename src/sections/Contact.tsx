@@ -118,7 +118,7 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
 
               <form
                 className="flex flex-col gap-6 h-full justify-between bg-zinc-900/70 p-8 rounded-lg shadow-lg max-w-2xl z-10 relative"
-                onSubmit={submitHandler}
+                // onSubmit={submitHandler}
                 data-netlify="true"
                 name="email"
               >
