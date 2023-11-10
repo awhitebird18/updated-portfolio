@@ -26,7 +26,7 @@ function Projects({ sectionRef }: { sectionRef: any }) {
               }`}
             >
               {/* Image */}
-              <div className="w-1/2 relative">
+              <div className="w-3/4 lg:w-1/2 relative">
                 <img
                   src={project.backgroundIcon}
                   className="animated-star w-16 lg:w-36 absolute right-0 top-16 z-10"

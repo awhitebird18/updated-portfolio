@@ -42,12 +42,12 @@ const Values = ({ sectionRef }: { sectionRef: any }) => {
                 </p>
               </div>
             </div>
-            <div className="w:full lg:w-1/3 h-80 lg:h-[36rem] flex flex-col justify-between relative rounded-lg">
+            <div className="w:full lg:w-1/3 h-96 lg:h-[36rem] flex flex-col justify-between relative rounded-lg">
               <div className="overflow-hidden bg-violet-500 absolute w-40 h-40 left-1/2 -translate-x-1/2 -top-16 rounded-full p-2 shadow-lg shadow-violet-950 ">
                 <img src={strengthImg} className="w-full h-full" />
               </div>
 
-              <div className="flex flex-col items-center flex-1 mt-8 px-8 pt-20 text-center gap-4 bg-gradient-to-t to-violet-600 from-violet-950 rounded">
+              <div className="flex flex-col items-center flex-1  mt-8 px-8 pt-20 text-center gap-4 bg-gradient-to-t to-violet-600 from-violet-950 rounded">
                 <h3 className="text-3xl font-semibold text-white">Persistence and Hardwork</h3>
                 <div className="w-1/2 h-1 bg-violet-900 rounded-sm" />
                 <p className="text-violet-200">
