@@ -121,6 +121,8 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
                 // onSubmit={submitHandler}
                 data-netlify="true"
                 name="email"
+                method="post"
+                id="contact-form"
               >
                 <div className="flex flex-col gap-2">
                   <h3 className="text-3xl text-white font-bold">Aaron Whitebird</h3>
