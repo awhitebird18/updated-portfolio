@@ -1,7 +1,7 @@
 // import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+// import { useForm } from "react-hook-form";
+// import { zodResolver } from "@hookform/resolvers/zod";
+// import { z } from "zod";
 import fullAvatar from "../assets/fullAvatar.png";
 import blur from "../assets/backgroundBlur.svg";
 
@@ -11,21 +11,21 @@ import { Button } from "@/components/ui/Button";
 import { useToast } from "@/components/ui/use-toast";
 
 // Zod schema for validation
-const contactSchema = z.object({
-  name: z.string().min(2, "Name too short"),
-  email: z.string().email("Invalid email address"),
-  subject: z.string(),
-  message: z.string().min(10, "Message should be at least 10 characters"),
-});
+// const contactSchema = z.object({
+//   name: z.string().min(2, "Name too short"),
+//   email: z.string().email("Invalid email address"),
+//   subject: z.string(),
+//   message: z.string().min(10, "Message should be at least 10 characters"),
+// });
 
-type FormData = z.infer<typeof contactSchema>;
+// type FormData = z.infer<typeof contactSchema>;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Contact = ({ sectionRef }: { sectionRef: any }) => {
   const { toast } = useToast();
-  const { reset } = useForm<FormData>({
-    resolver: zodResolver(contactSchema),
-  });
+  // const { reset } = useForm<FormData>({
+  //   resolver: zodResolver(contactSchema),
+  // });
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, react-hooks/exhaustive-deps
   const submitHandler = (event: any) => {
@@ -42,14 +42,14 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
     })
       .then(() => {
         console.log("form submitted");
-        toast({ title: "Success" });
+        // toast({ title: "Success" });
         // resetField("email");
       })
       .catch(() => {
         toast({ title: "Error" });
       });
 
-    reset();
+    // reset();
   };
 
   // useEffect(() => {
@@ -58,7 +58,7 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
 
   return (
     <div
-      id="contact"
+      id="contactd"
       ref={sectionRef}
       className="flex flex-col w-full items-center relative overflow-hidden bg-black"
     >
@@ -131,6 +131,7 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
         // method="POST"
         id="contact-form"
         // action="/"
+        // netlify
       >
         <input type="hidden" name="form-name" value="contact" />
         <div className="flex flex-col gap-2">
@@ -192,7 +193,7 @@ const Contact = ({ sectionRef }: { sectionRef: any }) => {
                 )} */}
 
         <p>
-          <button type="submit">Send</button>
+          <input type="submit">Send</input>
         </p>
 
         {/* <div className="flex flex-col gap-2">
